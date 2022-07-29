@@ -1,6 +1,6 @@
 <template>
   <view>
-    
+    cart
   </view>
 </template>
 
@@ -9,14 +9,11 @@
     data() {
       return {
         
-      }
-    },
-    methods: {
-      
+      };
     }
   }
 </script>
 
-<style>
+<style lang="scss">
 
 </style>
