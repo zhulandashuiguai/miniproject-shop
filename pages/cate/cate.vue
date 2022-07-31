@@ -1,15 +1,17 @@
 <template>
   <view> 
+  <!-- 创建之后直接使用自定义组件 -->
+  <my-search @click="gotoSearch"></my-search>
     <!-- 滚动包裹盒子 -->
     <view class="scrollContainer">
       <!-- 左侧滚动区域 -->
-      <scroll-view class="leftScroll"  scroll-y="true" style="height: 100vh;">
+      <scroll-view class="leftScroll"  scroll-y="true" :style="'height:'+wh+'px'">
         <block v-for="(item,i) in cateList" :key="i">
           <view :class="['leftScrollItem',i===active?'active':'']"  @click="activeChange(i)">{{item.cat_name}}</view>
         </block>
       </scroll-view>
       <!-- 右侧滚动区域 -->
-      <scroll-view class="rightScroll" scroll-y="true" style="height: 100vh;" :scroll-top="scrollTop">
+      <scroll-view class="rightScroll" scroll-y="true" :style="'height:'+wh+'px'" :scroll-top="scrollTop">
        <view class="catelv2" v-for="(item,i) in cateLevel2" :key="i">
          <!-- 二级分类标题 -->
          <view class="catelv2-title">
@@ -41,12 +43,15 @@
     cateLevel2:[],
     // 激活项
     active:0,
-    scrollTop:0
+    scrollTop:0,
+    wh:0
       };
     },
     onLoad() {
       this.getCateList()
-    },
+      const sysInfo=uni.getSystemInfoSync()
+      this.wh=sysInfo.windowHeight-50
+    }, 
     methods:{
      async getCateList(){
         const {data:res} =await uni.$http.get('/api/public/v1/categories')
@@ -66,6 +71,11 @@
       gotoGoodsList(item){
         uni.navigateTo({
           url:'/subpkg/goods_list/goods_list?cid='+item.cat_id
+        })
+      },
+      gotoSearch(){
+        uni.navigateTo({
+          url:'/subpkg/search/search'
         })
       }
       

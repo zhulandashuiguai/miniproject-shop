@@ -1,5 +1,9 @@
 <template>
   <view>
+    <!-- 搜索组件 -->
+    <view class="searchBox">
+    <my-search></my-search>
+    </view>
     <!-- 轮播图区域 -->
     <view>
       <swiper :indicator-dots="true" :autoplay="true" :circular="true" :interval="3000" :duration="1000">
@@ -132,5 +136,10 @@ swiper{
       justify-content: space-around;
   }
 }
+}
+.searchBox{
+  position: sticky;
+  top: 0;
+  z-index: 99;
 }
 </style>
