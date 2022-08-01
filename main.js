@@ -32,6 +32,9 @@ uni.$showMsg=function(title="数据加载失败",duration=1500){
       })
 }
 
+Vue.filter('toFixed',(num)=>{
+    return Number(num).toFixed(2)
+})
 
 const app = new Vue({
     ...App

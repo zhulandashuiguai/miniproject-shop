@@ -66,7 +66,7 @@
         if(this.kw.trim()==''){
         this.searchResults=[]
         return
-        }
+        }       
        const {data:res}= await uni.$http.get('/api/public/v1/goods/qsearch',{ query: this.kw})
        if(res.meta.status!==200) return uni.$showMsg()
        // console.log(res);
@@ -98,10 +98,10 @@
         uni.navigateTo({
           url:'../goods_list/goods_list?query='+item
         })
-      }
+      }  
     }
-  }
-</script>
+  }  
+</script> 
 
 <style lang="scss" scoped>
 .search-box{

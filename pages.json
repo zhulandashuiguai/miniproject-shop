@@ -29,18 +29,18 @@
       "path": "goods_detail/goods_detail"
     }    ,{
                     "path" : "goods_list/goods_list",
-                    "style" :                                                                                    
+                    "style" :   
                 {
-                    
-                    "enablePullDownRefresh": false
+                    "onReachBottomDistance": 150,
+                    "enablePullDownRefresh": true,
+                    "backgroundColor": "#F8F8F8"
                 }
                 
                 }
                 ,{
                     "path" : "search/search",
-                    "style" :                                                                                    
+                    "style" :                
                 {
-                  
                     "enablePullDownRefresh": false
                 }
                 
