@@ -27,7 +27,7 @@
     onLoad(options) {
       this.queryObj.query = options.query || '';
       this.queryObj.cid = options.cid || '';
-      console.log(options);
+      // console.log(options);
 
       this.getGoodsList()
     },
