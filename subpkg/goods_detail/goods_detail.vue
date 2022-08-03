@@ -24,7 +24,7 @@
       </view>
       <!-- 运费区域 -->
       <view class="yf">
-        快递：免运费
+        快递：免运费 
       </view>
     </view>
     <!-- 详情信息 -->
@@ -37,7 +37,22 @@
 </template>
 
 <script>
+  import {mapState,mapMutations ,mapGetters} from 'vuex'
   export default {
+    computed:{
+      ...mapState('cart',[]),
+       ...mapGetters('cart',['total'])
+    },
+    watch:{
+      total:{
+        handler(newval){
+          let index= this.options.findIndex(x=>x.text=='购物车')
+          this.options[index].info=newval
+        },
+        immediate:true
+      }
+    }
+    ,
     data() {
       return {
         // 商品详情对象
@@ -55,7 +70,7 @@
         		}, {
         			icon: 'cart',
         			text: '购物车',
-        			info: 2
+        			info: 0
         		}],
         	    buttonGroup: [{
         	      text: '加入购物车',
@@ -75,6 +90,7 @@
       this.getGoodsDetail(goods_id)
     },
     methods: {
+      ...mapMutations('cart',['addToCart']),
       async getGoodsDetail(goods_id) {
         const {
           data: res
@@ -102,8 +118,24 @@
           }
       	  },
       	  buttonClick (e) {
-      	    console.log(e)
-      	    this.options[2].info++
+      	    if(e.content.text==='加入购物车'){
+               // 每个商品的信息对象，都包含如下 6 个属性：
+                  // { goods_id, goods_name, goods_price, goods_count, goods_small_logo, goods_state }
+            const goods={
+              goods_id:this.goods_info.goods_id,
+              goods_name:this.goods_info.goods_name,
+              goods_price:this.goods_info.goods_price,
+              goods_count:1,
+              goods_small_logo:this.goods_info.goods_small_logo,
+              goods_state:true  //商品勾选状态
+            }
+            
+              
+              
+              this.addToCart(goods)
+            }
+            // console.log(e)
+      	    // this.options[2].info++
       	  }
     }
   }

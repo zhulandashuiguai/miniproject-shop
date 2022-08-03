@@ -56,7 +56,10 @@
             "postcss" : false,
             "ignoreDevUnusedFiles":false
         },
-        "usingComponents" : true
+        "usingComponents" : true,
+        "requiredPrivateInfos":[
+          "chooseAddress"
+        ]
     },
     "vueVersion" : "2"
 }
